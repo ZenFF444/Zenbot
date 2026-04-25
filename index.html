@@ -3,19 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zen Bot • Tu asistente inteligente en WhatsApp</title>
+  <title>Rem Bot • Tu asistente en WhatsApp</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Satoshi:wght@500;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  
+  <!-- Favicon con la imagen de Rem -->
+  <link rel="icon" type="image/jpeg" href="https://i.imgur.com/zcL9T.jpg">
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Satoshi:wght@500;700&display=swap');
-    
-    :root {
-      --primary: #00D4FF;
-      --dark: #0A2540;
-    }
     
     body {
       font-family: 'Inter', system-ui, sans-serif;
@@ -26,7 +25,7 @@
     }
 
     .hero-bg {
-      background: linear-gradient(135deg, #0A2540 0%, #001F3F 50%, #0A2540 100%);
+      background: linear-gradient(135deg, #0A1F38 0%, #1A2A4A 50%, #0F2A4A 100%);
       position: relative;
       overflow: hidden;
     }
@@ -34,313 +33,228 @@
     .hero-bg::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(circle at 30% 20%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
-                  radial-gradient(circle at 70% 80%, rgba(0, 212, 255, 0.12) 0%, transparent 50%);
-      animation: gradientShift 25s ease infinite;
+      inset: 0;
+      background: radial-gradient(circle at 40% 30%, rgba(100, 200, 255, 0.18) 0%, transparent 60%),
+                  radial-gradient(circle at 70% 70%, rgba(255, 180, 220, 0.12) 0%, transparent 60%);
+      animation: softShift 30s ease infinite;
       z-index: 0;
     }
 
-    @keyframes gradientShift {
-      0% { transform: translate(0, 0) rotate(0deg); }
-      50% { transform: translate(30px, 20px) rotate(5deg); }
-      100% { transform: translate(0, 0) rotate(0deg); }
+    @keyframes softShift {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.05) rotate(3deg); }
     }
 
     .glass {
-      background: rgba(255, 255, 255, 0.06);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(0, 212, 255, 0.15);
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(150, 220, 255, 0.2);
     }
 
-    .neon-glow {
-      box-shadow: 0 0 25px rgba(0, 212, 255, 0.5),
-                  0 0 50px rgba(0, 212, 255, 0.3);
+    .rem-glow {
+      box-shadow: 0 0 35px rgba(100, 200, 255, 0.6),
+                  0 0 70px rgba(255, 180, 220, 0.3);
     }
 
     .feature-card {
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     
     .feature-card:hover {
-      transform: translateY(-12px);
-      box-shadow: 0 25px 50px -12px rgba(0, 212, 255, 0.25);
+      transform: translateY(-15px) scale(1.02);
     }
 
-    .bot-icon {
-      animation: float 6s ease-in-out infinite;
+    .rem-icon {
+      animation: remFloat 7s ease-in-out infinite;
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-25px); }
+    @keyframes remFloat {
+      0%, 100% { transform: translateY(0) rotate(-3deg); }
+      50% { transform: translateY(-30px) rotate(3deg); }
     }
 
     .gradient-text {
-      background: linear-gradient(90deg, #00D4FF, #00BFFF);
+      background: linear-gradient(90deg, #64C8FF, #FFB4DC);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+
+    .logo-rem {
+      filter: drop-shadow(0 0 25px rgba(100, 200, 255, 0.7));
+    }
   </style>
 </head>
-<body class="bg-[#0A2540] text-white overflow-x-hidden">
+<body class="bg-[#0A1F38] text-white overflow-x-hidden">
   <!-- Navbar -->
   <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
     <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <div class="w-9 h-9 bg-gradient-to-br from-[#00D4FF] to-[#00BFFF] rounded-2xl flex items-center justify-center text-2xl">
-          🤖
-        </div>
-        <span class="heading-font text-2xl font-bold tracking-tighter">Zen Bot</span>
+        <img src="https://i.imgur.com/zcL9T.jpg" alt="Rem" class="w-10 h-10 rounded-2xl object-cover border border-cyan-300/30 logo-rem">
+        <span class="heading-font text-3xl font-bold tracking-tighter">Rem Bot</span>
       </div>
       
       <div class="hidden md:flex items-center gap-10 text-sm font-medium">
-        <a href="#inicio" class="hover:text-[#00D4FF] transition-colors">Inicio</a>
-        <a href="#caracteristicas" class="hover:text-[#00D4FF] transition-colors">Características</a>
-        <a href="#acceso" class="hover:text-[#00D4FF] transition-colors">Acceso</a>
+        <a href="#inicio" class="hover:text-[#64C8FF] transition-colors">Inicio</a>
+        <a href="#caracteristicas" class="hover:text-[#64C8FF] transition-colors">Características</a>
+        <a href="#acceso" class="hover:text-[#64C8FF] transition-colors">Acceso</a>
       </div>
       
       <a href="https://tupaginadepago.com" 
          target="_blank"
-         class="px-6 py-3 bg-gradient-to-r from-[#00D4FF] to-[#00BFFF] text-black font-semibold rounded-2xl hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-2 shadow-lg shadow-cyan-500/30">
-        <i class="fas fa-rocket"></i>
-        <span>Obtener Zen Bot</span>
+         class="px-7 py-3.5 bg-gradient-to-r from-[#64C8FF] to-[#FFB4DC] text-black font-semibold rounded-2xl hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-2 shadow-lg">
+        <i class="fas fa-sparkles"></i>
+        <span>Obtener Rem Bot</span>
       </a>
     </div>
   </nav>
 
   <!-- Hero Section -->
   <section id="inicio" class="hero-bg min-h-screen flex items-center relative pt-20">
-    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center min-h-[calc(100vh-80px)]">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center min-h-[calc(100vh-80px)] z-10">
       <!-- Left Content -->
-      <div class="space-y-8 z-10" data-aos="fade-right" data-aos-duration="800">
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm">
-          <div class="w-2 h-2 bg-[#00D4FF] rounded-full animate-pulse"></div>
-          Bot Premium de WhatsApp
+      <div class="space-y-8" data-aos="fade-right" data-aos-duration="900">
+        <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full glass text-sm border border-cyan-200/20">
+          <div class="w-2 h-2 bg-[#64C8FF] rounded-full animate-pulse"></div>
+          Bot Premium para WhatsApp
         </div>
         
         <h1 class="heading-font text-6xl md:text-7xl font-bold tracking-tighter leading-none">
-          Zen <span class="gradient-text">Bot</span>
+          Rem <span class="gradient-text">Bot</span>
         </h1>
         
-        <p class="text-2xl md:text-3xl text-gray-300 font-light">
-          Tu asistente inteligente en WhatsApp
+        <p class="text-3xl text-gray-200 font-light">
+          Tu asistente leal y adorable en WhatsApp
         </p>
         
-        <p class="text-lg text-gray-400 max-w-md">
-          Crea stickers sin bordes blancos, descarga videos de TikTok sin marca de agua y mucho más con comandos simples.
+        <p class="text-lg text-gray-300 max-w-lg">
+          Crea stickers sin bordes blancos con <span class="font-mono text-[#64C8FF]">!s</span>, descarga videos de TikTok sin marca de agua con <span class="font-mono text-[#64C8FF]">!tt</span>, y más.
         </p>
         
-        <div class="flex flex-wrap gap-4">
+        <div class="flex flex-wrap gap-5 pt-4">
           <a href="https://tupaginadepago.com" 
              target="_blank"
-             class="px-10 py-5 bg-gradient-to-r from-[#00D4FF] to-[#00BFFF] text-black text-lg font-semibold rounded-3xl hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-3 shadow-2xl shadow-cyan-500/40 neon-glow">
-            <i class="fas fa-arrow-right"></i>
-            Obtener Zen Bot Ahora
+             class="px-10 py-6 bg-gradient-to-r from-[#64C8FF] to-[#FFB4DC] text-black text-xl font-semibold rounded-3xl hover:scale-110 active:scale-95 transition-all duration-300 flex items-center gap-3 rem-glow">
+            <i class="fas fa-heart"></i>
+            Obtener Rem Bot
           </a>
           
           <a href="#caracteristicas" 
-             class="px-8 py-5 border border-white/30 hover:border-[#00D4FF] rounded-3xl text-lg font-medium transition-all duration-300 flex items-center gap-2">
-            Ver características
+             class="px-8 py-6 border-2 border-white/30 hover:border-[#64C8FF] rounded-3xl text-lg font-medium transition-all duration-300">
+            Ver funciones
           </a>
-        </div>
-        
-        <div class="flex items-center gap-8 text-sm pt-6">
-          <div class="flex items-center gap-2">
-            <i class="fas fa-check text-[#00D4FF]"></i>
-            <span>Stickers sin bordes</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <i class="fas fa-check text-[#00D4FF]"></i>
-            <span>TikTok sin watermark</span>
-          </div>
         </div>
       </div>
       
-      <!-- Right Visual -->
-      <div class="relative flex justify-center items-center z-10" data-aos="fade-left" data-aos-duration="1000">
+      <!-- Rem Visual -->
+      <div class="flex justify-center items-center" data-aos="fade-left" data-aos-duration="1100">
         <div class="relative">
-          <!-- Glow background -->
-          <div class="absolute -inset-20 bg-gradient-to-br from-[#00D4FF] via-cyan-400 to-transparent opacity-20 blur-3xl rounded-[100px]"></div>
+          <div class="absolute -inset-24 bg-gradient-to-br from-[#64C8FF] via-[#FFB4DC] to-transparent opacity-20 blur-[90px] rounded-full"></div>
           
-          <!-- Robot Icon -->
-          <div class="bot-icon w-80 h-80 md:w-96 md:h-96 bg-gradient-to-br from-[#0A2540] to-[#001F3F] rounded-[4rem] flex items-center justify-center border border-white/10 relative shadow-2xl">
-            <div class="text-[180px] drop-shadow-2xl">🤖</div>
-            
-            <!-- Neon rings -->
-            <div class="absolute inset-0 border border-[#00D4FF]/30 rounded-[4rem] animate-[spin_20s_linear_infinite]"></div>
-            <div class="absolute inset-8 border border-[#00D4FF]/20 rounded-[3rem] animate-[spin_15s_linear_infinite_reverse]"></div>
-            
-            <!-- Status indicator -->
-            <div class="absolute -top-4 -right-4 bg-gradient-to-br from-green-400 to-emerald-500 text-black text-xs font-bold px-5 py-1 rounded-2xl flex items-center gap-2 shadow-lg">
-              <div class="w-2 h-2 bg-white rounded-full animate-ping"></div>
-              ONLINE
-            </div>
-          </div>
+          <img src="https://i.imgur.com/zcL9T.jpg" 
+               alt="Rem Bot" 
+               class="rem-icon w-80 md:w-96 h-auto rounded-3xl shadow-2xl border border-white/20 object-cover">
         </div>
       </div>
     </div>
 
-    <!-- Scroll indicator -->
-    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 text-xs text-gray-500">
-      <div class="w-px h-12 bg-gradient-to-b from-transparent via-gray-500 to-transparent"></div>
-      <span>Desliza para descubrir</span>
+    <div class="absolute bottom-12 left-1/2 -translate-x-1/2 text-xs text-gray-400 flex flex-col items-center">
+      <span>Desliza para conocer más</span>
+      <i class="fas fa-chevron-down animate-bounce mt-2"></i>
     </div>
   </section>
 
   <!-- Características -->
-  <section id="caracteristicas" class="py-24 relative">
+  <section id="caracteristicas" class="py-24 bg-[#0A1F38]">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-16" data-aos="fade-up">
-        <span class="px-5 py-2 bg-white/5 rounded-full text-sm tracking-widest">FUNCIONALIDADES</span>
-        <h2 class="heading-font text-5xl font-bold mt-6">Potencia tu experiencia en WhatsApp</h2>
-        <p class="text-gray-400 mt-4 max-w-lg mx-auto">Comandos simples y potentes para hacer tu día a día más fácil.</p>
+        <h2 class="heading-font text-5xl font-bold">Funciones de Rem Bot</h2>
+        <p class="text-gray-400 mt-4 text-lg">Comandos simples y eficientes para ti</p>
       </div>
       
       <div class="grid md:grid-cols-3 gap-8">
-        <!-- Feature 1 -->
-        <div class="feature-card glass rounded-3xl p-8 border border-white/10" data-aos="fade-up" data-aos-delay="100">
-          <div class="w-16 h-16 bg-gradient-to-br from-[#00D4FF] to-cyan-400 rounded-2xl flex items-center justify-center text-4xl mb-8">🖼️</div>
-          <h3 class="text-2xl font-semibold mb-3">¡s - Stickers Premium</h3>
-          <p class="text-gray-400 leading-relaxed">
-            Crea stickers sin bordes blancos a partir de imágenes y GIFs. Resultado limpio y profesional en segundos.
-          </p>
-          <div class="mt-8 pt-8 border-t border-white/10 text-sm text-[#00D4FF] font-medium">
-            Comando: <span class="font-mono bg-black/40 px-3 py-1 rounded-xl">!s</span>
-          </div>
+        <div class="feature-card glass rounded-3xl p-10 border border-white/10" data-aos="fade-up" data-aos-delay="100">
+          <div class="text-6xl mb-6">🖼️</div>
+          <h3 class="text-2xl font-semibold mb-4">!s - Stickers Perfectos</h3>
+          <p class="text-gray-300">Crea stickers sin bordes blancos a partir de imágenes y GIFs. Resultado limpio y profesional.</p>
+          <div class="mt-10 text-[#64C8FF] font-mono text-lg">!s</div>
         </div>
-        
-        <!-- Feature 2 -->
-        <div class="feature-card glass rounded-3xl p-8 border border-white/10" data-aos="fade-up" data-aos-delay="200">
-          <div class="w-16 h-16 bg-gradient-to-br from-[#00D4FF] to-cyan-400 rounded-2xl flex items-center justify-center text-4xl mb-8">📹</div>
-          <h3 class="text-2xl font-semibold mb-3">¡tt - TikTok Downloader</h3>
-          <p class="text-gray-400 leading-relaxed">
-            Descarga videos de TikTok sin marca de agua de forma ultra rápida y en máxima calidad.
-          </p>
-          <div class="mt-8 pt-8 border-t border-white/10 text-sm text-[#00D4FF] font-medium">
-            Comando: <span class="font-mono bg-black/40 px-3 py-1 rounded-xl">!tt</span>
-          </div>
+
+        <div class="feature-card glass rounded-3xl p-10 border border-white/10" data-aos="fade-up" data-aos-delay="200">
+          <div class="text-6xl mb-6">📹</div>
+          <h3 class="text-2xl font-semibold mb-4">!tt - TikTok Sin Watermark</h3>
+          <p class="text-gray-300">Descarga videos de TikTok sin marca de agua de forma rápida y en alta calidad.</p>
+          <div class="mt-10 text-[#64C8FF] font-mono text-lg">!tt</div>
         </div>
-        
-        <!-- Feature 3 -->
-        <div class="feature-card glass rounded-3xl p-8 border border-white/10" data-aos="fade-up" data-aos-delay="300">
-          <div class="w-16 h-16 bg-gradient-to-br from-[#00D4FF] to-cyan-400 rounded-2xl flex items-center justify-center text-4xl mb-8">📋</div>
-          <h3 class="text-2xl font-semibold mb-3">¡menu - Todos los comandos</h3>
-          <p class="text-gray-400 leading-relaxed">
-            Accede a la lista completa de comandos disponibles en Zen Bot de forma instantánea.
-          </p>
-          <div class="mt-8 pt-8 border-t border-white/10 text-sm text-[#00D4FF] font-medium">
-            Comando: <span class="font-mono bg-black/40 px-3 py-1 rounded-xl">!menu</span>
-          </div>
+
+        <div class="feature-card glass rounded-3xl p-10 border border-white/10" data-aos="fade-up" data-aos-delay="300">
+          <div class="text-6xl mb-6">📜</div>
+          <h3 class="text-2xl font-semibold mb-4">!menu - Lista Completa</h3>
+          <p class="text-gray-300">Muestra todos los comandos disponibles de Rem Bot de manera instantánea.</p>
+          <div class="mt-10 text-[#64C8FF] font-mono text-lg">!menu</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Sección de Acceso -->
-  <section id="acceso" class="py-28 bg-gradient-to-b from-[#0A2540] to-[#001F3F]">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-      <div class="glass rounded-3xl p-16 border border-white/10" data-aos="zoom-in">
-        <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-2xl text-5xl mb-8">
-          💎
+  <!-- Sección Acceso -->
+  <section id="acceso" class="py-28 bg-gradient-to-b from-[#0A1F38] to-[#0F2A4A]">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="glass rounded-3xl p-16 text-center border border-white/10" data-aos="zoom-in">
+        <div class="mx-auto w-24 h-24 bg-gradient-to-br from-pink-300 to-cyan-300 rounded-3xl flex items-center justify-center text-6xl mb-8 shadow-inner">
+          💖
         </div>
         
-        <h2 class="heading-font text-5xl font-bold mb-6">Zen Bot Premium</h2>
-        <p class="text-2xl text-gray-300 mb-10">Accede al bot más completo y rápido de WhatsApp</p>
+        <h2 class="heading-font text-5xl font-bold mb-6">Rem Bot Premium</h2>
+        <p class="text-2xl text-gray-200 mb-12">Accede a tu asistente leal</p>
         
         <a href="https://tupaginadepago.com" 
            target="_blank"
-           class="inline-flex items-center gap-4 group px-14 py-7 bg-gradient-to-r from-[#00D4FF] via-cyan-400 to-[#00BFFF] text-black text-2xl font-semibold rounded-3xl hover:scale-105 active:scale-95 transition-all duration-300 shadow-2xl shadow-cyan-500/50 neon-glow">
-          <span>Obtener Zen Bot</span>
-          <i class="fas fa-arrow-right group-active:rotate-45 transition-transform"></i>
+           class="inline-block px-16 py-7 bg-gradient-to-r from-[#64C8FF] to-[#FFB4DC] text-black font-bold text-2xl rounded-3xl hover:scale-110 transition-all duration-300 rem-glow">
+          Obtener Rem Bot Ahora
         </a>
         
-        <div class="mt-16 max-w-md mx-auto text-sm text-gray-400 leading-relaxed border-t border-white/10 pt-10">
-          <p class="mb-4">Una vez realizado el pago recibirás el enlace de invitación al grupo privado.</p>
-          <p class="text-amber-400 font-medium">• Enlace de un solo uso<br>
-          • Solo puede abrirse desde tu dispositivo<br>
-          • No se permite compartir ni copiar el enlace</p>
-          <p class="mt-6 text-xs">Cualquier intento de distribución será denunciado.</p>
+        <div class="mt-16 text-sm text-gray-400 max-w-md mx-auto leading-relaxed">
+          Una vez realizado el pago recibirás el enlace de invitación al grupo privado.<br>
+          <span class="text-rose-300">El enlace es de un solo uso y solo puede abrirse desde tu dispositivo.</span><br>
+          No se permite compartir ni copiar el enlace.
         </div>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-black/40 border-t border-white/10 py-16">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="flex flex-col md:flex-row justify-between items-center gap-8">
-        <div class="flex items-center gap-3">
-          <div class="w-8 h-8 bg-gradient-to-br from-[#00D4FF] to-cyan-400 rounded-2xl flex items-center justify-center text-xl">🤖</div>
-          <div>
-            <span class="heading-font text-2xl font-bold">Zen Bot</span>
-          </div>
-        </div>
-        
-        <div class="text-center md:text-right text-sm text-gray-500">
-          <p>Creado con ❤️ por <span class="text-white">Zen</span></p>
-          <p>Sub Owner: <span class="text-white">Sow</span></p>
-          <p class="mt-4">© 2026 Zen Bot. Todos los derechos reservados.</p>
-        </div>
+  <footer class="bg-black/50 py-16 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <div class="flex items-center justify-center gap-3 mb-6">
+        <img src="https://i.imgur.com/zcL9T.jpg" alt="Rem" class="w-12 h-12 rounded-2xl object-cover">
+        <span class="heading-font text-3xl font-bold">Rem Bot</span>
       </div>
+      
+      <p class="text-gray-400">Creado con cariño por <span class="text-white">Zen</span></p>
+      <p class="text-gray-400">Sub Owner: <span class="text-white">Sow</span></p>
+      
+      <p class="mt-10 text-xs text-gray-500">© 2026 Rem Bot. Todos los derechos reservados.</p>
     </div>
   </footer>
 
   <script>
-    // Tailwind script already loaded via CDN
     AOS.init({
       once: true,
-      duration: 800,
-      easing: 'ease-out-cubic'
+      duration: 1000,
+      easing: 'ease-out-quart'
     });
 
-    // Smooth scroll for anchor links
+    // Smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
-        if (this.getAttribute('href') === '#') return;
-        
-        e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
         }
       });
     });
-
-    // Add some particle effect (subtle background dots)
-    function createParticles() {
-      const hero = document.querySelector('.hero-bg');
-      for (let i = 0; i < 40; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'absolute w-1 h-1 bg-[#00D4FF] rounded-full opacity-20';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.top = Math.random() * 100 + '%';
-        particle.style.animation = `floatParticle ${Math.random() * 20 + 15}s linear infinite`;
-        particle.style.animationDelay = `-${Math.random() * 20}s`;
-        hero.appendChild(particle);
-      }
-    }
-
-    // Add keyframe for particles
-    const style = document.createElement('style');
-    style.innerHTML = `
-      @keyframes floatParticle {
-        0% { transform: translateY(0) scale(1); opacity: 0.15; }
-        100% { transform: translateY(-120vh) scale(0.6); opacity: 0; }
-      }
-    `;
-    document.head.appendChild(style);
-
-    window.onload = () => {
-      createParticles();
-    };
   </script>
 </body>
-  </html>
+</html>
